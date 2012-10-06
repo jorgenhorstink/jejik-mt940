@@ -48,4 +48,12 @@ class Sns extends AbstractParser
 
         return null;
     }
+
+
+    protected function transaction(array $lines) {
+		$transaction = parent::transaction($lines);
+		$transaction->setDescription(trim(join("\n", array_slice(explode("\n", $transaction->getDescription()), 1))));
+		return $transaction;
+    }
+
 }

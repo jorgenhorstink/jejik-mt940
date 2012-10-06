@@ -57,6 +57,8 @@ class Ing extends AbstractParser
      * @param array $lines The transaction text at offset 0 and the description at offset 1
      * @return \Jejik\MT940\Transaction
      */
+
+    /*
     protected function transaction(array $lines)
     {
         $transaction = parent::transaction($lines);
@@ -72,6 +74,7 @@ class Ing extends AbstractParser
 
         return $transaction;
     }
+    */
 
     /**
      * Get the contra account from a transaction
@@ -82,7 +85,7 @@ class Ing extends AbstractParser
     protected function contraAccount(array $lines)
     {
         if (preg_match('/^([0-9]{9,10}) /', $lines[1], $match)) {
-            return $match[1];
+            return ltrim($match[1], 0);
         }
 
         return null;
